@@ -7,12 +7,26 @@ const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
 
 
-// sidebar variables
+// // sidebar variables
+// const sidebar = document.querySelector("[data-sidebar]");
+// const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+
+// // sidebar toggle functionality for mobile
+// sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+const sidebarBtnLabel = sidebarBtn.querySelector("span");
 
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+// set initial label based on current state (now open by default)
+sidebarBtnLabel.textContent = sidebar.classList.contains("active") ? "Hide Contacts" : "Show Contacts";
+
+// keep toggling label correctly on click
+sidebarBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+  sidebarBtnLabel.textContent = sidebar.classList.contains("active") ? "Hide Contacts" : "Show Contacts";
+});
+
 
 
 
