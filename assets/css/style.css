@@ -506,6 +506,24 @@ main {
 
 .about-text p { margin-bottom: 15px; }
 
+/* About page: inline, multi-line, theme-yellow highlight */
+[data-page="about"] .about-text .text-highlight{
+  --hl-color: rgba(255, 193, 59, 0.38); /* theme yellow (softer) */
+  --hl-height: .55em;                   /* thickness of the swipe */
+  display: inline;                      /* do NOT start a new line */
+  white-space: normal;                  /* wrap naturally */
+  padding: 0 .12em;                     /* a little breathing room */
+  box-shadow: inset 0 calc(-1 * var(--hl-height)) 0 var(--hl-color);
+  -webkit-box-decoration-break: clone;  /* keep across wrapped lines */
+  box-decoration-break: clone;
+  border-radius: .2em;                  /* soft marker edges */
+}
+
+/* optional stronger variant */
+[data-page="about"] .about-text .text-highlight--strong{
+  --hl-color: rgba(255, 193, 59, 0.55);
+}
+
 
 
 /**
@@ -1483,7 +1501,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin-bottom: 30px;
   }
 
-  .sidebar.active { max-height: 584px; }
+  .sidebar.active { max-height: 700px; }
 
   .sidebar-info { gap: 25px; }
 
@@ -1537,7 +1555,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .about .article-title { margin-bottom: 20px; }
 
-  .about-text { margin-bottom: 40px; }
+  .about-text { margin-bottom: 40px;  text-align: justify;}
 
   /* service */
 
@@ -2028,5 +2046,33 @@ textarea.form-input::-webkit-resizer { display: none; }
 	 */
 
   .timeline-text { max-width: 700px; }
+
+  /* About page: inline, multi-line highlight with brighter neon yellow */
+[data-page="about"] .about-text .text-highlight{
+  /* tweak these two to taste */
+  --hl-y: 86%;               /* vertical anchor (80–92% range) */
+  --hl-h: 0.78em;            /* band thickness (0.6–0.9em) */
+
+  --hl-color: hsl(44 100% 60% / 0.72);   /* brighter neon-ish yellow */
+  display: inline;
+  padding: 0 .14em;
+  background-image: linear-gradient(var(--hl-color), var(--hl-color));
+  background-repeat: no-repeat;
+  /* background-size: 100% var(--hl-h);     << controls coverage height */
+  /* background-position: 0 var(--hl-y);    << controls vertical position */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  border-radius: .22em;
+  filter: drop-shadow(0 0 6px hsl(44 100% 60% / 0.22));
+  /* make text readable on yellow */
+  color: hsl(0 0% 12%);                 /* dark gray */
+  -webkit-text-fill-color: hsl(0 0% 12%); /* Safari */
+  font-weight: 600; 
+}
+
+/* optional stronger variant */
+[data-page="about"] .about-text .text-highlight--strong{
+  --hl-color: hsl(44 100% 60% / 0.78);
+}
 
 }
